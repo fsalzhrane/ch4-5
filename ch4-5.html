@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter Quizzes - Security & Resilience Engineering</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #0066cc;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .answer {
+      color: green;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .explanation {
+      color: #555;
+      font-style: italic;
+      margin-top: 3px;
+    }
+    button {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chapter Quizzes</h1>
+  <nav>
+    <a href="#ch13">Chapter 13: Security Engineering</a>
+    <a href="#ch14">Chapter 14: Resilience Engineering</a>
+  </nav>
+
+  <!-- Chapter 13: Security Engineering Quiz -->
+  <section id="ch13">
+    <h2>Chapter 13 Quiz - Security Engineering</h2>
+    <div id="quiz_ch13"></div>
+  </section>
+
+  <!-- Chapter 14: Resilience Engineering Quiz -->
+  <section id="ch14">
+    <h2>Chapter 14 Quiz - Resilience Engineering</h2>
+    <div id="quiz_ch14"></div>
+  </section>
+
+  <script>
+    // Toggle answer visibility function
+    function showAnswer(chapter, qNum) {
+      var answerDiv = document.getElementById("answer_" + chapter + "_" + qNum);
+      if (answerDiv.style.display === "none") {
+        answerDiv.style.display = "block";
+      } else {
+        answerDiv.style.display = "none";
+      }
+    }
+
+    // Function to render a quiz given an array of questions, container id, and chapter identifier
+    function renderQuiz(questions, containerId, chapter) {
+      const container = document.getElementById(containerId);
+      questions.forEach((question, index) => {
+        const qNum = index + 1;
+        let questionHTML = `<div class="question">
+          <h3>${qNum}. ${question.q}</h3>`;
+        question.options.forEach(option => {
+          questionHTML += `<p>${option}</p>`;
+        });
+        questionHTML += `<button onclick="showAnswer('${chapter}', ${qNum})">Show Answer</button>
+          <div id="answer_${chapter}_${qNum}" class="answer" style="display: none;">
+            Correct Answer: ${question.answer}
+            <div class="explanation">Explanation: ${question.explanation}</div>
+          </div>
+        </div>`;
+        container.innerHTML += questionHTML;
+      });
+    }
+
+    // --- Chapter 13: Security Engineering Questions (30 Questions) ---
+    const questions_ch13 = [
+      {
+        q: "What is the primary focus of security engineering?",
+        options: [
+          "A. Enhancing system performance",
+          "B. Protecting systems and data from malicious attacks",
+          "C. Reducing development costs",
+          "D. Improving user interface design"
+        ],
+        answer: "B",
+        explanation: "Security engineering focuses on protecting systems and data from attacks."
+      },
+      {
+        q: "Which three dimensions make up the CIA triad in security?",
+        options: [
+          "A. Confidentiality, Integrity, Availability",
+          "B. Control, Isolation, Access",
+          "C. Certainty, Integration, Agility",
+          "D. Confidentiality, Isolation, Authentication"
+        ],
+        answer: "A",
+        explanation: "The CIA triad consists of Confidentiality, Integrity, and Availability."
+      },
+      {
+        q: "What does Confidentiality ensure?",
+        options: [
+          "A. Data is correct",
+          "B. Data is accessible to authorized users only",
+          "C. Data is available at all times",
+          "D. Data is processed quickly"
+        ],
+        answer: "B",
+        explanation: "Confidentiality means ensuring that data is accessible only to those authorized to see it."
+      },
+      {
+        q: "What does Integrity ensure in a security context?",
+        options: [
+          "A. Data is encrypted",
+          "B. Data is not improperly modified",
+          "C. Data is always available",
+          "D. Data is backed up regularly"
+        ],
+        answer: "B",
+        explanation: "Integrity ensures that data remains accurate and is not tampered with."
+      },
+      {
+        q: "What does Availability guarantee?",
+        options: [
+          "A. Only authorized users can access the system",
+          "B. Data remains unchanged",
+          "C. The system is accessible when needed",
+          "D. The system has minimal redundancy"
+        ],
+        answer: "C",
+        explanation: "Availability ensures that systems and data are accessible to authorized users when needed."
+      },
+      {
+        q: "In security engineering, what is an asset?",
+        options: [
+          "A. A type of vulnerability",
+          "B. Something of value that must be protected",
+          "C. A control mechanism",
+          "D. A type of attack"
+        ],
+        answer: "B",
+        explanation: "An asset is something valuable (like data or a system) that must be protected."
+      },
+      {
+        q: "What is an attack in security terms?",
+        options: [
+          "A. A system update",
+          "B. An exploitation of a vulnerability",
+          "C. A type of encryption",
+          "D. A risk assessment method"
+        ],
+        answer: "B",
+        explanation: "An attack is when an adversary exploits a system's vulnerability."
+      },
+      {
+        q: "How is a vulnerability defined?",
+        options: [
+          "A. A strength of a system",
+          "B. A weakness that can be exploited",
+          "C. A type of security control",
+          "D. An audit process"
+        ],
+        answer: "B",
+        explanation: "A vulnerability is a weakness in a system that can be exploited to cause harm."
+      },
+      {
+        q: "What is a control in the context of security engineering?",
+        options: [
+          "A. A measure to reduce vulnerabilities",
+          "B. A method of encryption",
+          "C. A type of attack",
+          "D. A risk assessment framework"
+        ],
+        answer: "A",
+        explanation: "A control is a protective measure implemented to reduce a system’s vulnerability."
+      },
+      {
+        q: "What does risk assessment involve?",
+        options: [
+          "A. Only identifying system vulnerabilities",
+          "B. Identifying, assessing, and mitigating risks",
+          "C. Installing firewalls",
+          "D. Testing system performance"
+        ],
+        answer: "B",
+        explanation: "Risk assessment involves identifying, assessing, and mitigating potential risks."
+      },
+      {
+        q: "What is a preliminary risk assessment?",
+        options: [
+          "A. A detailed risk analysis during deployment",
+          "B. An initial assessment of generic risks",
+          "C. A post-incident review",
+          "D. A method for performance testing"
+        ],
+        answer: "B",
+        explanation: "Preliminary risk assessment is the initial assessment of generic risks before detailed analysis."
+      },
+      {
+        q: "What does design risk assessment focus on?",
+        options: [
+          "A. Risks during system development",
+          "B. Risks during system use",
+          "C. Post-deployment analysis",
+          "D. Cost evaluation"
+        ],
+        answer: "A",
+        explanation: "Design risk assessment evaluates risks during the system development phase."
+      },
+      {
+        q: "What does operational risk assessment evaluate?",
+        options: [
+          "A. Risks during system design",
+          "B. Risks during system use",
+          "C. The cost of security controls",
+          "D. Vulnerabilities in code"
+        ],
+        answer: "B",
+        explanation: "Operational risk assessment examines risks during the actual use of the system."
+      },
+      {
+        q: "What are security requirements?",
+        options: [
+          "A. Guidelines for system aesthetics",
+          "B. Constraints the system must meet to maintain security",
+          "C. Only performance metrics",
+          "D. User interface specifications"
+        ],
+        answer: "B",
+        explanation: "Security requirements are constraints and rules designed to ensure the system remains secure."
+      },
+      {
+        q: "Which of the following is NOT a typical security requirement?",
+        options: [
+          "A. Authentication",
+          "B. Authorization",
+          "C. Confidentiality",
+          "D. Redundancy"
+        ],
+        answer: "D",
+        explanation: "Redundancy is more related to dependability than to security requirements."
+      },
+      {
+        q: "What is authentication?",
+        options: [
+          "A. Verifying a user’s identity",
+          "B. Granting permissions",
+          "C. Encrypting data",
+          "D. Monitoring network traffic"
+        ],
+        answer: "A",
+        explanation: "Authentication is the process of verifying a user’s identity."
+      },
+      {
+        q: "What is authorization in security engineering?",
+        options: [
+          "A. Confirming a user's identity",
+          "B. Granting access based on permissions",
+          "C. Encrypting communications",
+          "D. Logging system events"
+        ],
+        answer: "B",
+        explanation: "Authorization is the process of granting access rights to a user based on their permissions."
+      },
+      {
+        q: "What does non-repudiation ensure?",
+        options: [
+          "A. Users cannot deny their actions",
+          "B. Data remains confidential",
+          "C. The system is always available",
+          "D. The system self-heals"
+        ],
+        answer: "A",
+        explanation: "Non-repudiation prevents users from denying that they performed an action."
+      },
+      {
+        q: "What is security auditing?",
+        options: [
+          "A. The process of encrypting data",
+          "B. Monitoring and reviewing security logs",
+          "C. Testing system performance",
+          "D. Granting access rights"
+        ],
+        answer: "B",
+        explanation: "Security auditing involves monitoring and reviewing security logs to detect anomalies."
+      },
+      {
+        q: "What is secure systems design?",
+        options: [
+          "A. Designing systems solely for speed",
+          "B. Structuring a system to protect assets and minimize losses",
+          "C. Focusing only on user experience",
+          "D. Reducing system cost without security considerations"
+        ],
+        answer: "B",
+        explanation: "Secure systems design involves structuring systems to protect critical assets and minimize damage from attacks."
+      },
+      {
+        q: "What does layered protection mean?",
+        options: [
+          "A. Implementing security at multiple levels of a system",
+          "B. Using a single security measure",
+          "C. Isolating the network only",
+          "D. Simplifying the security architecture"
+        ],
+        answer: "A",
+        explanation: "Layered protection involves applying multiple security measures across different system layers."
+      },
+      {
+        q: "What is the purpose of security testing?",
+        options: [
+          "A. To check that the system can resist attacks",
+          "B. To improve the system’s speed",
+          "C. To reduce development time",
+          "D. To simplify the user interface"
+        ],
+        answer: "A",
+        explanation: "Security testing validates that the system is able to withstand malicious attacks."
+      },
+      {
+        q: "How can AI enhance security engineering?",
+        options: [
+          "A. By replacing all security personnel",
+          "B. By automating threat detection and risk assessment",
+          "C. By eliminating the need for encryption",
+          "D. By reducing system redundancy"
+        ],
+        answer: "B",
+        explanation: "AI can automate and improve threat detection, vulnerability assessment, and other security tasks."
+      },
+      {
+        q: "What is Shift‑Left Security?",
+        options: [
+          "A. Integrating security practices at the end of the SDLC",
+          "B. Integrating security practices early in the software development lifecycle",
+          "C. Shifting security responsibilities to users",
+          "D. Outsourcing security tasks"
+        ],
+        answer: "B",
+        explanation: "Shift‑Left Security means integrating security early during development to catch issues sooner."
+      },
+      {
+        q: "What does DevSecOps refer to?",
+        options: [
+          "A. A methodology that ignores security",
+          "B. Integrating security practices into DevOps workflows",
+          "C. A new programming language",
+          "D. A type of hardware firewall"
+        ],
+        answer: "B",
+        explanation: "DevSecOps integrates security into DevOps, ensuring continuous security throughout development and operations."
+      },
+      {
+        q: "What is Zero Trust Security?",
+        options: [
+          "A. Trusting every device by default",
+          "B. Assuming no device or user is trusted unless verified",
+          "C. A system with no security controls",
+          "D. Relying solely on firewalls for protection"
+        ],
+        answer: "B",
+        explanation: "Zero Trust Security assumes no inherent trust and requires strict verification for every access request."
+      },
+      {
+        q: "What does Cloud Security focus on?",
+        options: [
+          "A. Securing on-premise systems only",
+          "B. Implementing security measures for cloud-based systems",
+          "C. Enhancing physical security of data centers",
+          "D. Reducing the cost of cloud services"
+        ],
+        answer: "B",
+        explanation: "Cloud Security is about protecting data and systems that are hosted in the cloud."
+      },
+      {
+        q: "According to the lecture, what is often considered the weakest link in security?",
+        options: [
+          "A. Hardware failures",
+          "B. Software bugs",
+          "C. People",
+          "D. Network infrastructure"
+        ],
+        answer: "C",
+        explanation: "People are often cited as the weakest link in security due to errors or negligence."
+      },
+      {
+        q: "What does the 'CIMT Compass' refer to in security engineering?",
+        options: [
+          "A. A navigation tool for mobile apps",
+          "B. A framework where Academic meets Business Reality",
+          "C. A type of encryption algorithm",
+          "D. A performance metric"
+        ],
+        answer: "B",
+        explanation: "The CIMT Compass is a framework linking academic principles with business realities in security engineering."
+      }
+    ];
+
+    // --- Chapter 14: Resilience Engineering Questions (30 Questions) ---
+    const questions_ch14 = [
+      {
+        q: "What is resilience engineering?",
+        options: [
+          "A. Designing systems for maximum speed",
+          "B. Ensuring a system maintains critical services despite disruptions",
+          "C. Focusing solely on cost reduction",
+          "D. Developing user-friendly interfaces"
+        ],
+        answer: "B",
+        explanation: "Resilience engineering is about designing systems to continue functioning despite adverse events."
+      },
+      {
+        q: "According to the lecture, resilience is primarily about:",
+        options: [
+          "A. Preventing all failures",
+          "B. Understanding how systems adapt and continue under unexpected events",
+          "C. Maximizing system redundancy",
+          "D. Reducing development costs"
+        ],
+        answer: "B",
+        explanation: "Resilience focuses on how systems adapt and maintain services even when disruptions occur."
+      },
+      {
+        q: "What role do human experts play in resilience engineering?",
+        options: [
+          "A. They are unnecessary in highly automated systems",
+          "B. They are the key to successful resilience by managing disruptions",
+          "C. They increase the risk of failure",
+          "D. They are only involved in initial design"
+        ],
+        answer: "B",
+        explanation: "Human expertise is vital for adapting to and managing unforeseen challenges."
+      },
+      {
+        q: "How does cybersecurity contribute to resilience engineering?",
+        options: [
+          "A. By eliminating the need for backups",
+          "B. By protecting systems from attacks that could disrupt services",
+          "C. By reducing system performance",
+          "D. By solely focusing on encryption"
+        ],
+        answer: "B",
+        explanation: "Cybersecurity measures help maintain system continuity by preventing and mitigating attacks."
+      },
+      {
+        q: "What is meant by sociotechnical resilience?",
+        options: [
+          "A. Resilience achieved solely by technology",
+          "B. The combined strength of human factors and technology in overcoming challenges",
+          "C. A type of network security",
+          "D. Reducing system complexity"
+        ],
+        answer: "B",
+        explanation: "Sociotechnical resilience emphasizes the interplay between people and technology to create adaptable systems."
+      },
+      {
+        q: "What is a critical aspect of resilient systems design?",
+        options: [
+          "A. Eliminating all redundancy",
+          "B. Identifying critical services and planning for recovery",
+          "C. Focusing exclusively on cost reduction",
+          "D. Removing human oversight"
+        ],
+        answer: "B",
+        explanation: "Resilient design involves identifying which services are essential and planning methods to quickly recover them if disrupted."
+      },
+      {
+        q: "Which measure supports system resilience by ensuring continuity of data?",
+        options: [
+          "A. Disabling backups",
+          "B. Maintaining local copies of data",
+          "C. Increasing automation exclusively",
+          "D. Reducing network speed"
+        ],
+        answer: "B",
+        explanation: "Keeping local copies of data helps a system continue operating if central data sources fail."
+      },
+      {
+        q: "What is the Swiss Cheese Model in resilience engineering?",
+        options: [
+          "A. A method for data encryption",
+          "B. A model that uses multiple layers of defense to prevent failures",
+          "C. A cost reduction strategy",
+          "D. A design for improving user interfaces"
+        ],
+        answer: "B",
+        explanation: "The Swiss Cheese Model visualizes multiple layers of defense, each with its own imperfections, arranged so that holes do not line up."
+      },
+      {
+        q: "What is the benefit of adding defensive layers in a resilient system?",
+        options: [
+          "A. It increases the likelihood of simultaneous failures",
+          "B. It minimizes the risk that a single failure will lead to a complete breakdown",
+          "C. It reduces system redundancy",
+          "D. It simplifies the overall design"
+        ],
+        answer: "B",
+        explanation: "Defensive layers provide multiple barriers against failure, reducing the chance that one breach causes total collapse."
+      },
+      {
+        q: "What is a common drawback of excessive automation in resilience engineering?",
+        options: [
+          "A. It always improves system performance",
+          "B. It can reduce human expertise and adaptability",
+          "C. It eliminates the need for backups",
+          "D. It guarantees resilience without oversight"
+        ],
+        answer: "B",
+        explanation: "Over-reliance on automation can erode human skills needed to handle unexpected situations."
+      },
+      {
+        q: "How can a system maintain resilience during a power surge?",
+        options: [
+          "A. By relying solely on primary power",
+          "B. By using robust backup and recovery processes",
+          "C. By shutting down immediately",
+          "D. By ignoring the surge"
+        ],
+        answer: "B",
+        explanation: "Robust backup systems and recovery processes help a system quickly recover from power-related disruptions."
+      },
+      {
+        q: "What does cyber‑resilience planning involve?",
+        options: [
+          "A. Ignoring potential cyber threats",
+          "B. Developing a strategic framework that includes backup, threat detection, and recovery",
+          "C. Only focusing on physical security",
+          "D. Reducing system functionality"
+        ],
+        answer: "B",
+        explanation: "Cyber‑resilience planning is a comprehensive approach to ensure system continuity amid cyber threats."
+      },
+      {
+        q: "What is the role of incident management in resilience engineering?",
+        options: [
+          "A. To prolong system downtime",
+          "B. To provide a rapid response to disruptions",
+          "C. To eliminate all human involvement",
+          "D. To focus solely on cost reduction"
+        ],
+        answer: "B",
+        explanation: "Effective incident management helps a system quickly address and recover from disruptions."
+      },
+      {
+        q: "What does 'operational resilience' imply?",
+        options: [
+          "A. The ability of a system to function only under ideal conditions",
+          "B. The capability of a system to continue operating during and after disruptions",
+          "C. A measure of system cost",
+          "D. The speed of data processing"
+        ],
+        answer: "B",
+        explanation: "Operational resilience is the ability of a system to maintain its operations despite adverse conditions."
+      },
+      {
+        q: "What are R&R (Resistance and Recovery) strategies designed to do?",
+        options: [
+          "A. Increase system complexity without benefits",
+          "B. Minimize the impact of failures and ensure quick recovery",
+          "C. Replace human oversight entirely",
+          "D. Focus on aesthetic improvements"
+        ],
+        answer: "B",
+        explanation: "R&R strategies are intended to reduce the impact of failures and enable rapid system recovery."
+      },
+      {
+        q: "Which approach involves real‑time monitoring and rapid response to system failures?",
+        options: [
+          "A. Cyber‑resilience planning",
+          "B. Eliminating backups",
+          "C. Reducing human oversight",
+          "D. Solely relying on manual processes"
+        ],
+        answer: "A",
+        explanation: "Cyber‑resilience planning includes continuous monitoring and rapid response mechanisms."
+      },
+      {
+        q: "How does human oversight contribute to system resilience?",
+        options: [
+          "A. By increasing reliance on automation only",
+          "B. By supervising automated systems and intervening when necessary",
+          "C. By eliminating the need for recovery plans",
+          "D. By reducing system redundancy"
+        ],
+        answer: "B",
+        explanation: "Human oversight is critical to monitor automated processes and step in when unexpected issues occur."
+      },
+      {
+        q: "What role does explainable AI (XAI) play in resilience engineering?",
+        options: [
+          "A. It hides the decision-making process",
+          "B. It makes AI decisions transparent and easier to trust",
+          "C. It replaces all human expertise",
+          "D. It increases system opacity"
+        ],
+        answer: "B",
+        explanation: "Explainable AI helps clarify AI decision-making, increasing trust and aiding in identifying potential issues."
+      },
+      {
+        q: "What is Chaos Engineering?",
+        options: [
+          "A. A method to deliberately introduce failures to test resilience",
+          "B. A method to simplify system design",
+          "C. A process of cost reduction",
+          "D. A type of encryption"
+        ],
+        answer: "A",
+        explanation: "Chaos Engineering involves intentionally introducing faults to verify that a system can withstand and recover from disruptions."
+      },
+      {
+        q: "How does micro‑services architecture support resilience?",
+        options: [
+          "A. By consolidating all functions into one service",
+          "B. By breaking down systems into smaller components that isolate failures",
+          "C. By eliminating redundancy",
+          "D. By focusing solely on user interface design"
+        ],
+        answer: "B",
+        explanation: "Micro‑services architecture allows failures to be isolated to individual components, making overall recovery easier."
+      },
+      {
+        q: "What role does cloud computing play in resilience engineering?",
+        options: [
+          "A. It offers no benefits to resilience",
+          "B. It provides built‑in redundancy and disaster recovery features",
+          "C. It increases the risk of failure",
+          "D. It solely reduces costs"
+        ],
+        answer: "B",
+        explanation: "Cloud computing platforms often include features like redundancy and disaster recovery that support resilience."
+      },
+      {
+        q: "What does AIOps refer to in the context of resilience?",
+        options: [
+          "A. AI for improving user interfaces",
+          "B. Using AI to automate IT operations and improve incident response",
+          "C. A new programming language",
+          "D. A hardware solution for resilience"
+        ],
+        answer: "B",
+        explanation: "AIOps uses artificial intelligence to automate and optimize IT operations, contributing to resilience."
+      },
+      {
+        q: "What is a potential drawback of relying too heavily on automation for resilience?",
+        options: [
+          "A. It always improves recovery times",
+          "B. It may lead to a decline in human expertise needed for complex problem solving",
+          "C. It eliminates all risks",
+          "D. It increases system redundancy"
+        ],
+        answer: "B",
+        explanation: "Over-reliance on automation can reduce the human skills required to manage unexpected disruptions."
+      },
+      {
+        q: "What is one benefit of maintaining backup servers in resilient system design?",
+        options: [
+          "A. They increase system downtime",
+          "B. They ensure continuity if primary servers fail",
+          "C. They reduce system security",
+          "D. They eliminate the need for monitoring"
+        ],
+        answer: "B",
+        explanation: "Backup servers provide a failover option to maintain service continuity during outages."
+      },
+      {
+        q: "How do operational and management processes contribute to resilience?",
+        options: [
+          "A. By making processes rigid and inflexible",
+          "B. By enabling flexibility, efficient problem management, and rapid recovery",
+          "C. By solely focusing on cost reduction",
+          "D. By eliminating human oversight"
+        ],
+        answer: "B",
+        explanation: "Efficient operational and management processes help a system adapt quickly to disruptions."
+      },
+      {
+        q: "What is the purpose of defensive layers in resilience engineering?",
+        options: [
+          "A. To provide a single point of failure",
+          "B. To create multiple barriers that reduce the chance of complete failure",
+          "C. To simplify the system architecture",
+          "D. To increase system cost"
+        ],
+        answer: "B",
+        explanation: "Defensive layers add multiple safeguards to help prevent or mitigate failures."
+      },
+      {
+        q: "What is the key lesson of resilience engineering as described in the lecture?",
+        options: [
+          "A. Systems should be designed without human intervention",
+          "B. Systems must combine technical measures with human expertise to remain resilient",
+          "C. Cost reduction is the primary goal",
+          "D. Automation alone can ensure resilience"
+        ],
+        answer: "B",
+        explanation: "The lecture emphasizes that resilient systems require a blend of robust technical design and human expertise."
+      }
+    ];
+
+    // Render the quizzes
+    renderQuiz(questions_ch13, 'quiz_ch13', 'ch13');
+    renderQuiz(questions_ch14, 'quiz_ch14', 'ch14');
+  </script>
+</body>
+</html>
